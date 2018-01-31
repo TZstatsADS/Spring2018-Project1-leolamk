@@ -4,14 +4,14 @@
 ![image](figs/title.jpg)
 
 ### [Project Description](doc/)
-This is the first and only *individual* (as opposed to *team*) this semester. 
+Inauguration speech is a ceremony marking the commencement of a new term of President of America. Often, in this speech, President addresses his policies and future presidential plans. In this study, our goal is to investigate the unfound pattern in these speeches. We focus on the differences in between Republican Presidents and Democratic Presidents as well as Presidents who received graduate school education and Presidents who did not. We want to see if different educational and political backgrounds will have impacts on the topic, word length, sentence length, and emotion of their inauguration speeches.
 
 Term: Spring 2018
 
-+ Projec title: Lorem ipsum dolor sit amet
-+ This project is conducted by [your name]
++ Projec title: Project 1 - Impact of Political and Educational Backgrounds in the Inauguration Speeches of US Presidents
++ This project is conducted by [Leo Lam - lkl2129]
 
-+ Project summary: [a short summary] Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
++ Project summary: [a short summary] In this study, we analyzed the sentence length, word length, emotion, and topic of Presidents with different educational and political backgrounds using LDA topic modeling, Natural Language Processing, and Wordcloud.
 
 Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is orgarnized as follows.
 
