@@ -1,6 +1,7 @@
 ---
 title: "Project 1 - Leo Lam"
 output: html_notebook
+
 ---
 Inauguration speech is a ceremony marking the commencement of a new term of President of America. Often, in this speech, President addresses his policies and future presidential plans. In this study, our goal is to investigate the unfound pattern in these speeches. We focus on the differences in between Republican Presidents and Democratic Presidents as well as Presidents who received graduate school education and Presidents who did not. We want to see if different educational and political backgrounds will have impacts on the topic, word length, sentence length, and emotion of their inauguration speeches.
 
@@ -730,43 +731,6 @@ dem.rep.table
 ```
 The left table shows the number of sentences in each topic of presidents who attend graduate school while the right table shows that of presidents who did not attend graudate school. As we can see from the table above, presidents who attended graduate school tend to cover topic 2 and 5 in their inauguration speech, which are 'american dream' and 'anticipate' while presidents who did not attend graduate school tend to cover topic 3, 6, and 9, which are 'economy', 'people', and 'legistration'. This may suggest presidents who attended graduate tend to focus on the future and core value of America while the presidents who did not attend graduate school tend to focus on more pragmatic topics.
 
-Now, let's perform a clustering on presidents who attended graduate school and who did not attend graudate school.
-```{r}
-presid.summary=tbl_df(corpus.list.df)%>%
-  filter(type=="inaug", File%in% speech.list$File[c(grad.a1890.ind,grad.b1890.ind)])%>%
-  select(File, government:peace)%>%
-  group_by(File)%>%
-  summarise_each(funs(mean))
-
-presid.summary=as.data.frame(presid.summary)
-rownames(presid.summary)=as.character((presid.summary[,1]))
-km.res=kmeans(scale(presid.summary[,-1]), iter.max=200,
-              5)
-fviz_cluster(km.res, 
-             stand=T, repel= TRUE,
-             data = presid.summary[,-1],
-             show.clust.cent=FALSE, main = 'grad')
-
-
-presid.summary=tbl_df(corpus.list.df)%>%
-  filter(type=="inaug", File%in% speech.list$File[c(no.grad.a1890.ind,no.grad.b1890.ind)])%>%
-  select(File, government:peace)%>%
-  group_by(File)%>%
-  summarise_each(funs(mean))
-
-presid.summary=as.data.frame(presid.summary)
-rownames(presid.summary)=as.character((presid.summary[,1]))
-km.res=kmeans(scale(presid.summary[,-1]), iter.max=200,
-              5)
-fviz_cluster(km.res, 
-             stand=T, repel= TRUE,
-             data = presid.summary[,-1],
-             show.clust.cent=FALSE, main = 'no grad')
-
-
-```
-The graph in the right shows the clustering of presidents who did not attend graduate school and the graph in the left shows that of presidents who attended graduate school. As we observe the cluster plot above, we notice president from the same party tend to form it's own cluster. For example, in 'no grad' cluster, all presidents in cluster 3 are democratic while all presidents in cluster 5 are republican. 
-
 Then, we think if the presidents are clustered together, this means they gave similar inauguration speeches, which suggests they might also share similar policies. Therefore, if an American supports one of the presidents in the cluster, he/she may as well supports another president in the same cluster. Hence, we found a dataset from Wikipedia that contains approval rate of all presidents since 1937. (https://en.wikipedia.org/wiki/United_States_presidential_approval_rating)
 ```{r}
 presid.summary=tbl_df(corpus.list.df)%>%
@@ -784,10 +748,10 @@ fviz_cluster(km.res,
              data = presid.summary[,-1],
              show.clust.cent=FALSE, main = 'presidents after 1937')
 ```
-From the graph, we look at cluster 2, where there are three presidents including Richard Nixon, William Clinton, and Barack Obama. According to the historical approval rate from Wikipedia, Preisdent Nixon has an average approval rate of 49.1, President Clinton has an average approval rate of 55.1, President Obama has an average approval rate of 47.9. Also, if we look at cluster 4, where there are four presidents including George Bush, Franklin Roosevelt, Lyndon Johnson, and Donald Trump. As President Trump has just been into an office for a year, we will account him into this approval rate analysis. President Johnson has an average approval rate of 55.1, President Bush has an average approval rate of 60.9, and President Roosevelt has an average approval rate of 63. These results match our hypothesis of presidents have similar inauguration speech tend to have similar approval rate. But further analysis is required as the collection of approval rate started in 1937 meaning we only have very limited data.
+From the graph, we look at cluster 2, where there are four presidents including Richard Nixon, William Clinton, Barack Obama, and Jimmy Carter. According to the historical approval rate from Wikipedia, Preisdent Nixon has an average approval rate of 49.1, President Clinton has an average approval rate of 55.1, President Obama has an average approval rate of 47.9, and President W Bush has an average approval rate of 49.4. Also, if we look at cluster 4, where there are four presidents including George Bush, Ronald Reagan, Lyndon Johnson, and Donald Trump. As President Trump has just been into an office for a year, we will account him into this approval rate analysis. President Johnson has an average approval rate of 55.1, President Bush has an average approval rate of 60.9, and President Reagan has an average approval rate of 52.8. These results match our hypothesis of presidents have similar inauguration speech tend to have similar approval rate. This can be very useful in predicting furture presidents' approval rate based on their inauguration speech. But further analysis is required as the collection of approval rate started in 1937 meaning we only have very limited data. 
 
 Summary:
-In part 3.4, we applied topic modeling into the inauguration speeches, we found presidents from differents parties tend to focus on different topics and presidents who attended to graduate school also tend to focus on different topics. Furthermore, we found presidents in the same cluster tend to be in the same party and have the similar approval rate.
+In part 3.4, we applied topic modeling into the inauguration speeches, we found presidents from differents parties tend to focus on different topics and presidents who attended to graduate school also tend to focus on different topics. Furthermore, we found presidents in the same cluster tend to have the similar approval rate.
 
 ## Conclusion
 In conclusion, in this study, we showed that Republican Presidents tend to use shorter sentences as compared to Democratic Presidents, and this may due to the fact that there are fewer Republican Presidents who attended graduate school. We also showed that Presidents who attended graduate school tend to use more positive words in their inauguration speech while presidents who use longer sentences tend to use fewer negative words. Furthermore, we found that going to graduate school before 1890 may have a stronger impact in sentence length as graduate school were harder to get in before 1890. Finally, presidents from the same party tend to cover similar topics in their inauguration speech, and presidents who mention similar topics in their inauguration speech may share similar approval rate. 
